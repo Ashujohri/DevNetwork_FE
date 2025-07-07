@@ -18,7 +18,7 @@ export default function Navbar() {
       dispatch(removeUser());
       return router.replace("/auth/login");
     }
-  }, [authService, dispatch, removeUser]);
+  }, [dispatch, router]);
 
   return (
     <div className="navbar bg-base-300 shadow-sm">

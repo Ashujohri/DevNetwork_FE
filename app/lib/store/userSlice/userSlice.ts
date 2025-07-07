@@ -41,7 +41,7 @@ const userSlice = createSlice({
     },
     removeUser: (state) => {
       Object.keys(state).forEach((key) => {
-        //@ts-ignore
+        //@ts-expect-error 
         state[key] = "";
       });
     },

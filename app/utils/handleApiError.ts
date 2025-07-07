@@ -16,7 +16,7 @@ export function handleApiError(
     "Error: jwt expired"
   ) {
     console.log("middleware", error);
-    
+
     alert("Session expired, please login again");
     request?.cookies.clear();
     dispatch?.(removeUser());

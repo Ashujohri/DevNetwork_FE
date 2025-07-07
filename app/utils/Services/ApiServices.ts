@@ -31,7 +31,8 @@ async function getServices<T>(
 
 async function authService<T>(
   url: string,
-  body: any,
+  //@ts-nocheck
+  body: any, //@ts-nocheck
   router?: AppRouterInstance
 ): Promise<CommonApiResponse<T> | null> {
   try {
@@ -51,12 +52,14 @@ async function authService<T>(
     return data;
   } catch (error) {
     console.error("Something went wrong", error);
+    handleApiError(error, router);
     return null;
   }
 }
 
 async function patchService(
   url: string,
+  //@ts-nocheck
   body: any
 ): Promise<CommonApiResponse | null> {
   try {
@@ -82,6 +85,7 @@ async function patchService(
 
 async function postService(
   url: string,
+  //@ts-nocheck
   body: any,
   router?: AppRouterInstance
 ): Promise<CommonApiResponse | null> {
@@ -102,6 +106,7 @@ async function postService(
     return data;
   } catch (error) {
     console.error("Something went wrong", error);
+    handleApiError(error, router);
     return null;
   }
 }

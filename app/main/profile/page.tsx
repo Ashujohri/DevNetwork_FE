@@ -56,6 +56,7 @@ export default function Profile() {
 
   const handleEditProfile = useCallback(async () => {
     try {
+      //@ts-nocheck
       const { email, ...data } = formData;
       const response = await patchService("profile/edit", data);
       if (response?.data != undefined && response != null) {
@@ -75,7 +76,7 @@ export default function Profile() {
     } catch (error) {
       console.log("Something went wrong", error);
     }
-  }, [formData, patchService, setIsEdit, isEdit]);
+  }, [formData, setIsEdit, isEdit, dispatch]);
 
   return (
     !!user?._id && (

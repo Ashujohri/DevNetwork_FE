@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Notifications as BellIcon } from "@mui/icons-material";
 import { getServices, postService } from "@/app/utils/Services/ApiServices";
 import { useAppDispatch, useAppSelector } from "@/app/lib/store/hooks";
@@ -35,7 +35,7 @@ export default function Sidebar() {
     } catch (error) {
       handleApiError(error);
     }
-  }, []);
+  }, [dispatch, addRequests]);
 
   const handleReviewReq = useCallback(async (status: string, _id: string) => {
     try {
@@ -46,7 +46,7 @@ export default function Sidebar() {
     } catch (error) {
       handleApiError(error);
     }
-  }, []);
+  }, [dispatch, removeRequest]);
 
   const fetchFriendReq = useCallback(async () => {
     try {
@@ -58,7 +58,7 @@ export default function Sidebar() {
     } catch (error) {
       handleApiError(error);
     }
-  }, []);
+  }, [dispatch, addConnections]);
 
   return (
     <div className="mt-2">

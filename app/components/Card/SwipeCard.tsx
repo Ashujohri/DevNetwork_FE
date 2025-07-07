@@ -1,6 +1,6 @@
 "use client";
 import { FeedItem } from "@/app/lib/store/feedSlice/feedSlice";
-import React, { useRef, useState, useEffect, useMemo } from "react";
+import React, { useRef, useState, useEffect} from "react";
 
 interface SwipeCardProps {
   userData?: FeedItem;

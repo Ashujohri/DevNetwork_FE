@@ -27,7 +27,7 @@ export default function UserPreview() {
 
   useEffect(() => {
     fetchUser();
-  }, [userData?._id]);
+  }, [userData?._id, fetchUser]);
 
   return null;
 }

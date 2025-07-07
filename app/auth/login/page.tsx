@@ -6,6 +6,7 @@ import { addUser, UserState } from "@/app/lib/store/userSlice/userSlice";
 import Navbar from "../../components/Navbar/Navbar";
 import { useRouter } from "next/navigation";
 import { handleApiError } from "../../utils/handleApiError";
+import { COPY } from "@/app/constant";
 
 type FormData = {
   email: string;
@@ -37,14 +38,14 @@ export default function Login() {
         router.replace("/main/feed");
         return;
       } else {
-        console.error("User data is undefined");
+        console.error(COPY.USER_DATA_UNDEFINED);
         return;
       }
     } catch (err) {
       console.log("login catch error", err);
       handleApiError(err, router, dispatch);
     }
-  }, [formData.email, formData.password, formData, dispatch, addUser]);
+  }, [formData.email, formData.password, formData, dispatch, router]);
 
   const handleSignUp = useCallback(async () => {
     const body = {
@@ -61,7 +62,7 @@ export default function Login() {
         setIsLoggedInForm(!isLoggedInForm);
         return;
       } else {
-        console.error("User data is undefined");
+        console.error(COPY.USER_DATA_UNDEFINED);
         return;
       }
     } catch (err) {
@@ -75,7 +76,9 @@ export default function Login() {
     formData.lastname,
     formData,
     dispatch,
-    addUser,
+    router,
+    isLoggedInForm,
+    setIsLoggedInForm
   ]);
 
   const updateFormData = useCallback(
@@ -92,16 +95,16 @@ export default function Login() {
         <div className="card card-dash bg-base-300 w-96">
           <div className="card-body">
             <h2 className="card-title justify-center">
-              {isLoggedInForm ? "Login" : "Sign up"}
+              {isLoggedInForm ? COPY.LOGIN : COPY.SIGN_UP}
             </h2>
             {!isLoggedInForm && (
               <>
                 <fieldset className="fieldset my-1">
-                  <legend className="fieldset-legend">First Name</legend>
+                  <legend className="fieldset-legend">{COPY.FIRST_NAME}</legend>
                   <input
                     type="firstname"
                     className="input"
-                    placeholder="First Name"
+                    placeholder={COPY.FIRST_NAME}
                     value={formData.firstname}
                     onChange={(event) =>
                       updateFormData({ firstname: event.target.value })
@@ -109,11 +112,11 @@ export default function Login() {
                   />
                 </fieldset>
                 <fieldset className="fieldset my-1">
-                  <legend className="fieldset-legend">Last Name</legend>
+                  <legend className="fieldset-legend">{COPY.LAST_NAME}</legend>
                   <input
                     type="lastname"
                     className="input"
-                    placeholder="Last Name"
+                    placeholder={COPY.LAST_NAME}
                     value={formData.lastname}
                     onChange={(event) =>
                       updateFormData({ lastname: event.target.value })
@@ -123,11 +126,11 @@ export default function Login() {
               </>
             )}
             <fieldset className="fieldset my-1">
-              <legend className="fieldset-legend">Email ID</legend>
+              <legend className="fieldset-legend">{COPY.EMAIL_ID}</legend>
               <input
                 type="email"
                 className="input"
-                placeholder="Email ID"
+                placeholder={COPY.EMAIL_ID}
                 value={formData.email}
                 onChange={(event) =>
                   updateFormData({ email: event.target.value })
@@ -135,11 +138,11 @@ export default function Login() {
               />
             </fieldset>
             <fieldset className="fieldset my-1">
-              <legend className="fieldset-legend">Password</legend>
+              <legend className="fieldset-legend">{COPY.PASSWORD}</legend>
               <input
                 type="password"
                 className="input"
-                placeholder="Password"
+                placeholder={COPY.PASSWORD}
                 value={formData.password}
                 onChange={(event) =>
                   updateFormData({ password: event.target.value })
@@ -151,7 +154,7 @@ export default function Login() {
                 className="btn btn-primary"
                 onClick={isLoggedInForm ? handleSubmit : handleSignUp}
               >
-                {isLoggedInForm ? "Login" : "Sign-In"}
+                {isLoggedInForm ? COPY.LOGIN : COPY.SIGN_IN}
               </button>
             </div>
             <p
@@ -159,8 +162,8 @@ export default function Login() {
               onClick={() => setIsLoggedInForm(!isLoggedInForm)}
             >
               {isLoggedInForm
-                ? "Existing User? Login Here !"
-                : "New User? Sign-in Here !"}
+                ? COPY.EXISTING_USER_MESSAGE
+                : COPY.NEW_USER_MESSAGE}
             </p>
           </div>
         </div>
