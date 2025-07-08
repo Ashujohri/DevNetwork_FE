@@ -2,7 +2,8 @@ import { CommonApiResponse } from "@/app/common/CommonApiResponseType";
 import axios, { AxiosRequestConfig } from "axios";
 import { handleApiError } from "../handleApiError";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-const SERVER_URL = "http://localhost:3001";
+// const SERVER_URL = "http://localhost:3001";
+const SERVER_URL = "/api";
 
 async function getServices<T>(
   url: string,
