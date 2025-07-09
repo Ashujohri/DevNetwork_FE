@@ -32,7 +32,7 @@ export default function Login() {
       password: formData.password,
     };
     try {
-      const response = await authService<UserState>("/login", body);
+      const response = await authService<UserState>("login", body);
       if (response?.data !== undefined) {
         dispatch(addUser(response?.data));
         router.replace("/main/feed");
